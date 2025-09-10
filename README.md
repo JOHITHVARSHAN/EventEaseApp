@@ -51,7 +51,7 @@ dotnet run
 
 ---
 
-## 🤖 Copilot's Role in Development
+### 🤖 Copilot's Role in Development
 
 Microsoft Copilot played a key role throughout the development of EventEaseApp:
 
