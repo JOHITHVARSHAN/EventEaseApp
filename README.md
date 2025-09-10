@@ -54,11 +54,3 @@ Microsoft Copilot played a key role throughout the development of EventEaseApp:
 - 🧩 **Project Planning & Integration**: Copilot supported architectural decisions and helped integrate multiple components into a cohesive front-end experience.
 
 This collaboration enabled faster iteration, cleaner code, and a smoother development workflow.
-
-### Installation
-
-```bash
-git clone https://github.com/your-username/EventEaseApp.git
-cd EventEaseApp
-dotnet restore
-dotnet run
