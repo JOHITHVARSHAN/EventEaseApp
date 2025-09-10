@@ -48,3 +48,17 @@ git clone https://github.com/your-username/EventEaseApp.git
 cd EventEaseApp
 dotnet restore
 dotnet run
+
+---
+
+## 🤖 Copilot's Role in Development
+
+Microsoft Copilot played a key role throughout the development of EventEaseApp:
+
+- 🧱 **Component Generation**: Copilot helped scaffold the foundational Event Card component with fields and two-way data binding, accelerating the initial setup.
+- 🔀 **Routing Implementation**: It assisted in configuring navigation between pages and debugging routing errors during early testing.
+- ⚙️ **Performance Optimization**: Copilot flagged inefficient logic and suggested improvements for input validation and state handling.
+- 🧪 **Form & State Management**: It provided code snippets for building the Registration Form, implementing validation, and managing user sessions.
+- 🧩 **Project Planning & Integration**: Copilot supported architectural decisions and helped integrate multiple components into a cohesive front-end experience.
+
+This collaboration enabled faster iteration, cleaner code, and a smoother development workflow.
