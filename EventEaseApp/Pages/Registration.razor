@@ -1,0 +1,71 @@
+@page "/registration"
+@page "/registration/{EventId:int}"
+
+@inject EventEaseApp.Data.EventService EventService
+
+<PageTitle>Register</PageTitle>
+
+@if (EventId > 0 && eventToRegister != null)
+{
+    <h1>Register for: @eventToRegister.Title</h1>
+}
+else
+{
+    <h1>Event Registration</h1>
+}
+
+<EditForm Model="@registrationModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="registrationModel.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <InputText id="email" class="form-control" @bind-Value="registrationModel.Email" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</EditForm>
+
+@if (isSubmitted)
+{
+    <p class="mt-3"><em>Registration successful!</em></p>
+}
+
+@code {
+    [Parameter]
+    public int EventId { get; set; }
+
+    private EventEaseApp.Data.Event? eventToRegister;
+
+    private RegistrationModel registrationModel = new();
+    private bool isSubmitted = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (EventId > 0)
+        {
+            eventToRegister = await EventService.GetEventByIdAsync(EventId);
+        }
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Process the registration
+        isSubmitted = true;
+    }
+
+    public class RegistrationModel
+    {
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Name { get; set; } = "";
+
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.EmailAddress]
+        public string Email { get; set; } = "";
+    }
+}

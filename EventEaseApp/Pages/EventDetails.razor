@@ -1,0 +1,36 @@
+@page "/event/{EventId:int}"
+@inject EventEaseApp.Data.EventService EventService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Event Details</PageTitle>
+
+@if (currentEvent != null)
+{
+    <h1>@currentEvent.Title</h1>
+    <p><strong>Date:</strong> @currentEvent.Date?.ToShortDateString()</p>
+    <p><strong>Location:</strong> @currentEvent.Location</p>
+    <p><strong>Description:</strong> @currentEvent.Description</p>
+
+    <button class="btn btn-primary" @onclick="NavigateToRegistration">Register Now</button>
+}
+else
+{
+    <p><em>Event not found.</em></p>
+}
+
+@code {
+    [Parameter]
+    public int EventId { get; set; }
+
+    private EventEaseApp.Data.Event? currentEvent;
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentEvent = await EventService.GetEventByIdAsync(EventId);
+    }
+
+    private void NavigateToRegistration()
+    {
+        NavigationManager.NavigateTo($"/registration/{EventId}");
+    }
+}

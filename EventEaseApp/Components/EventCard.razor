@@ -1,0 +1,22 @@
+@inject NavigationManager NavigationManager
+
+<div class="card" style="width: 18rem; margin: 1rem;">
+    <div class="card-body">
+        <h5 class="card-title">@EventModel.Title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@EventModel.Date?.ToShortDateString()</h6>
+        <p class="card-text">@EventModel.Description</p>
+        <p class="card-text"><small class="text-muted">@EventModel.Location</small></p>
+        <a href="/event/@EventModel.Id" class="btn btn-info">View Details</a>
+        <button class="btn btn-primary" @onclick="() => NavigateToRegistration(EventModel.Id)">Register Now</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventEaseApp.Data.Event EventModel { get; set; } = new();
+
+    private void NavigateToRegistration(int eventId)
+    {
+        NavigationManager.NavigateTo($"/registration/{eventId}");
+    }
+}

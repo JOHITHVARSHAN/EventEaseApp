@@ -1,0 +1,18 @@
+@inject EventEaseApp.Data.AttendanceService AttendanceService
+@implements IDisposable
+
+<div class="alert alert-info">
+    Attendees: @AttendanceService.AttendingCount
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AttendanceService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        AttendanceService.OnChange -= StateHasChanged;
+    }
+}
